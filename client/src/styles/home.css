@@ -1,0 +1,53 @@
+.home-body,
+.add-body {
+    /* height: 800px; */
+    text-align: left;
+    margin: 0px 70px;
+    padding-top: 30px;
+}
+
+.title {
+    text-align: left;
+    margin: 10px 50px 0px 50px;
+    padding: 20px;
+    border-top: 1px solid;
+}
+
+.home {
+    margin-top: 30px;
+    height: 100vh;
+}
+
+#home-container {
+    border-top: 1px solid silver;
+    display: grid;
+    grid-template-columns: 400px repeat(3, 1fr);
+    grid-column-gap: 10px;
+    /* grid-template-rows: repeat(4, 1fr); */
+}
+
+.container-add-tshirt {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-tshirt {
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin: 15px;
+}
+
+.nav-main {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+
+.link {
+    margin-left: 30px;
+    text-decoration: none;
+    color: blueviolet
+}
