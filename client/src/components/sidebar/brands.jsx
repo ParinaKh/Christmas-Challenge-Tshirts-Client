@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/sidebar.css";
 
-export default function Brands({ tshirts }) {
-  const [selectedBrands, setSelectedBrands] = useState([]);
-
+export default function Brands({ tshirts, selectedBrands, setSelectedBrands }) {
   function handleChecked(evt) {
     const isChecked = evt.target.checked;
     const brandName = evt.target.value;
@@ -14,21 +12,6 @@ export default function Brands({ tshirts }) {
     } else {
       setSelectedBrands(selectedBrands.filter(b => b !== brandName));
     }
-  }
-
-  function getBrandTshirts() {
-    console.log(selectedBrands);
-    // if (selectedBrands === "") return null;
-    return tshirts.map((tshirt, i) => {
-      if (selectedBrands.includes(tshirt.brand))
-        return (
-          <div className="one-tshirt" key={i}>
-            <p id="tshirt-title">{tshirt.name}</p>
-            <img id="tshirt-image" src={tshirt.tshirtImage}></img>
-            <p id="tshirt-price">{tshirt.price}€</p>
-          </div>
-        );
-    });
   }
 
   return (
@@ -89,7 +72,6 @@ export default function Brands({ tshirts }) {
           onChange={handleChecked}
         />
       </div>
-      <div className="filteredbrand-tshirts">{getBrandTshirts()}</div>
     </div>
   );
 }

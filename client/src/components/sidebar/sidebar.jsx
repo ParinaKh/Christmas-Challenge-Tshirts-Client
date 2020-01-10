@@ -9,7 +9,9 @@ import Colors from "./colors";
 
 export default function Sidebar({ props }) {
   const [tshirts, setTshirts] = useState([]);
-  const [selectedFilter, setSelectedFilter] = useState(null);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedColor, setSelectedColor] = useState([]);
+  const [priceMax, setPriceMax] = useState();
 
   useEffect(() => {
     axios
@@ -22,25 +24,47 @@ export default function Sidebar({ props }) {
     return () => {};
   }, []);
 
+  function handleReset() {
+    return <div>No filter yet</div>;
+  }
+
+  function getfilteredTshirts() {
+    console.log(selectedBrands);
+    return tshirts.map((tshirt, i) => {
+      if (selectedBrands.includes(tshirt.brand))
+        if (selectedColor.includes(tshirt.color))
+          if (priceMax >= tshirt.price)
+            return (
+              <div className="one-tshirt" key={i}>
+                <p id="tshirt-title">{tshirt.name}</p>
+                <img id="tshirt-image" src={tshirt.tshirtImage}></img>
+                <p id="tshirt-price">{tshirt.price}€</p>
+              </div>
+            );
+    });
+  }
+
   return (
     <>
       <div className="sidebar-container">
         <ResetButton tshirts={tshirts} />
-        <PriceMax tshirts={tshirts} />
-        <Brands tshirts={tshirts} />
-        <Colors tshirts={tshirts} />
+        <PriceMax
+          tshirts={tshirts}
+          priceMax={priceMax}
+          setPriceMax={setPriceMax}
+        />
+        <Brands
+          tshirts={tshirts}
+          selectedBrands={selectedBrands}
+          setSelectedBrands={setSelectedBrands}
+        />
+        <Colors
+          tshirts={tshirts}
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
+        />
       </div>
-      {/* {tshirts.map((tshirt, i) => {
-          return (
-            <div className="one-tshirt" key={i}>
-              <p id="tshirt-title">{tshirt.name}</p>
-
-              <img id="tshirt-image" src={tshirt.tshirtImage}></img>
-
-              <p id="tshirt-price">{tshirt.price}€</p>
-            </div>
-          );
-        })} */}
+      <div className="filtered-tshirts">{getfilteredTshirts()}</div>
     </>
   );
 }

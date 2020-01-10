@@ -1,30 +1,8 @@
 import React, { useState } from "react";
 
-export default function Colors({ tshirts }) {
-  const [getTshirts, setGetTshirts] = useState();
-  const [selectedColor, setSelectedColor] = useState([]);
-
-  // function handleClick(evt) {
-  //   const color = evt.target.value;
-  //   console.log(clickedColor);
-  //   const copyColors
-
-  //   if (clickedColor) {
-  //     setSelectedColor([...selectedColor, color]);
-  //   }
-  //   if ({
-  //     setSelectedColor(selectedColor.filter(c => c !== clickedColor));
-  //   }
-  // }
-
-  // function addColor(color) {
-  //     selectedColor.push(color);
-  //     document.getElementById("color").value = selectedColor.join('');
-  // }
-
+export default function Colors({ tshirts, selectedColor, setSelectedColor }) {
   const handleClick = e => {
-    const clickedColor = e.target.name;
-    console.log(clickedColor);
+    console.log(selectedColor);
     const copyColors = [...selectedColor];
     if (e.target.className.includes("selected")) {
       e.target.classList.remove("selected");
@@ -36,77 +14,61 @@ export default function Colors({ tshirts }) {
     setSelectedColor(copyColors);
   };
 
-  function getColoredTshirts() {
-    console.log(selectedColor);
-
-    return tshirts.map((tshirt, i) => {
-      return (
-        <div className="one-tshirt" key={i}>
-          <p id="tshirt-title">{tshirt.name}</p>
-
-          <img id="tshirt-image" src={tshirt.tshirtImage}></img>
-
-          <p id="tshirt-price">{tshirt.price}€</p>
-        </div>
-      );
-    });
-  }
-
   return (
     <>
       <div>
         <p className="filter-title">Colors</p>
         <div className="color-container">
-          <div
+          <input
             id="color"
-            style={{ background: "black" }}
+            style={{ background: "black", color: "black" }}
             name="black"
+            className=""
             value="black"
             key={tshirts.color}
             onClick={handleClick}
-          ></div>
-          <div
+          />
+          <input
             id="color"
-            style={{ background: "red" }}
+            style={{ background: "red", color: "red" }}
             name="red"
             value="red"
             key={tshirts.color}
             onClick={handleClick}
           />
-          <div
+          <input
             id="color"
-            style={{ background: "blue" }}
+            style={{ background: "blue", color: "blue" }}
             name="blue"
             value="blue"
             key={tshirts.color}
             onClick={handleClick}
-          ></div>
-          <div
+          />
+          <input
             id="color"
-            style={{ background: "white" }}
+            style={{ background: "white", color: "white" }}
             name="white"
             value="white"
             key={tshirts.color}
             onClick={handleClick}
-          ></div>
-          <div
+          />
+          <input
             id="color"
-            style={{ background: "green" }}
+            style={{ background: "green", color: "green" }}
             name="green"
             value="green"
             key={tshirts.color}
             onClick={handleClick}
-          ></div>
-          <div
+          />
+          <input
             id="color"
-            style={{ background: "purple" }}
+            style={{ background: "purple", color: "purple" }}
             name="purple"
             value="purple"
             key={tshirts.color}
             onClick={handleClick}
-          ></div>
+          />
         </div>
-        <div className="filteredcolored-tshirts">{getColoredTshirts()}</div>
       </div>
     </>
   );
